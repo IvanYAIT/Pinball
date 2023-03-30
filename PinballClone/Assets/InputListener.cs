@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputListener : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class InputListener : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
-            _leftFipperRb.AddForce(200, 0, 0, ForceMode.Impulse);
+            _leftFipperRb.AddForce(400, 0, 0, ForceMode.Impulse);
         if (Input.GetKeyDown(KeyCode.X))
-            _rightFipperRb.AddForce(-200, 0, 0, ForceMode.Impulse);
+            _rightFipperRb.AddForce(-400, 0, 0, ForceMode.Impulse);
 
         if (Input.GetKey(KeyCode.Space))
             if (_springJoint.minDistance <= 4)
@@ -20,6 +21,9 @@ public class InputListener : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
             _springJoint.minDistance = 0;
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(0);
     }
 
     public void Construct(Rigidbody rightFipperRb, Rigidbody leftFipperRb, GameObject spring)
