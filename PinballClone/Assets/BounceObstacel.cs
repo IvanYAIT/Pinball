@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacel : MonoBehaviour
+public class BounceObstacel : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private float force;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        force *= -1;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Ball"))
         {
             Vector3 heading = transform.position - collision.gameObject.transform.position;
             float distance = heading.magnitude;
             Vector3 direction = heading / distance;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(direction.x * force, direction.y * force, direction.z * force), ForceMode.Impulse);
         }
     }
 }

@@ -7,11 +7,6 @@ public class InputListener : MonoBehaviour
     private GameObject _spring;
     private SpringJoint _springJoint;
 
-    void Start()
-    {
-        _springJoint = _spring.GetComponent<SpringJoint>();
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
@@ -32,5 +27,6 @@ public class InputListener : MonoBehaviour
         _rightFipperRb = rightFipperRb;
         _leftFipperRb = leftFipperRb;
         _spring = spring;
+        _springJoint = _spring.GetComponent<SpringJoint>();
     }
 }
