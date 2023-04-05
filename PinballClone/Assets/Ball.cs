@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -8,26 +6,11 @@ public class Ball : MonoBehaviour
     private BallSpawner _ballSpawner;
     private int _pointsPerObstacel;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacel"))
         {
             _scoreCounter.AddScore(_pointsPerObstacel);
-        }
-        if (collision.gameObject.CompareTag("Bonus"))
-        {
-            _scoreCounter.AddScore(collision.gameObject.GetComponent<Bonus>().cost);
-            Destroy(collision.gameObject);
         }
     }
 
@@ -37,6 +20,11 @@ public class Ball : MonoBehaviour
         {
             GameObject obj = _ballSpawner.Spawn();
             obj.GetComponent<Ball>().Construct(_scoreCounter, _ballSpawner, _pointsPerObstacel);
+        }
+        if (other.CompareTag("Bonus"))
+        {
+            _scoreCounter.AddScore(other.gameObject.GetComponent<Bonus>().cost);
+            Destroy(other.gameObject);
         }
     }
 

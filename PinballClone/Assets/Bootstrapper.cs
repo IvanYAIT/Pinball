@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Bootstrapper : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rightFipperRb;
-    [SerializeField] private Rigidbody leftFipperRb;
     [SerializeField] private GameObject spring;
     [SerializeField] private InputListener inputListener;
     [SerializeField] private int ballAmount;
@@ -25,7 +23,7 @@ public class Bootstrapper : MonoBehaviour
         ballSpawner = new BallSpawner(spawnPoint, ballPrefab, ballAmount, ballText);
         scoreCounter = new ScoreCounter(scoreView);
         ball.Construct(scoreCounter, ballSpawner, pointsPerObstacel);
-        inputListener.Construct(rightFipperRb, leftFipperRb, spring);
+        inputListener.Construct(spring);
     }
 
     void Update()
