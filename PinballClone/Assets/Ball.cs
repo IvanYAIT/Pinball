@@ -19,7 +19,8 @@ public class Ball : MonoBehaviour
         if (other.CompareTag("DeathZone"))
         {
             GameObject obj = _ballSpawner.Spawn();
-            obj.GetComponent<Ball>().Construct(_scoreCounter, _ballSpawner, _pointsPerObstacel);
+            if(obj != null)
+                obj.GetComponent<Ball>().Construct(_scoreCounter, _ballSpawner, _pointsPerObstacel);
         }
         if (other.CompareTag("Bonus"))
         {
